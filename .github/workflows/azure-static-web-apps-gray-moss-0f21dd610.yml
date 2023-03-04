@@ -23,6 +23,7 @@ jobs:
         env:
           SECRET_GITHUB_ID: 1231231
           SECRET_GITHUB_SECRET: 12312
+          AUTH_TRUST_HOST: https://gray-moss-0f21dd610.2.azurestaticapps.net/
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_MOSS_0F21DD610 }}
@@ -30,7 +31,7 @@ jobs:
           action: 'upload'
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: './src' # App source code path
+          app_location: './' # App source code path
           api_location: './build/server' # Api source code path - optional
           output_location: './build/static' # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
