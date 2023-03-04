@@ -3,7 +3,7 @@ import GitHub from '@auth/core/providers/github';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private';
+import { SECRET_GITHUB_SECRET, SECRET_GITHUB_ID } from '$env/static/private';
 
 const authorization = (async ({ event, resolve }) => {
 	const session = await event.locals.getSession();
@@ -22,7 +22,7 @@ const authorization = (async ({ event, resolve }) => {
 export const handle: Handle = sequence(
 	SvelteKitAuth({
 		// @ts-ignore
-		providers: [GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })]
+		providers: [GitHub({ clientId: SECRET_GITHUB_ID, clientSecret: SECRET_GITHUB_SECRET })]
 	}),
 	authorization
 );
