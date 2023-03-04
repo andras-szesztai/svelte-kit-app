@@ -21,6 +21,7 @@ const authorization = (async ({ event, resolve }) => {
 
 export const handle: Handle = sequence(
 	SvelteKitAuth({
+		// @ts-ignore
 		providers: [GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })]
 	}),
 	authorization
