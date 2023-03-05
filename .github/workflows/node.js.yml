@@ -9,23 +9,23 @@ on:
 jobs:
   build_and_test_job:
     runs-on: ubuntu-latest
-    name: Build and Test Job
+    name: Lint and Test Job
     strategy:
       matrix:
         node-version: [18.x]
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      id: buildtest
+      id: linttest
       uses: actions/setup-node@v3
-      env:
-        AZURE_AD_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-        AZURE_AD_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-        AZURE_AD_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-        AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
     - run: npm run lint && npm run check
+      env:
+        AZURE_AD_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+        AZURE_AD_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+        AZURE_AD_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+        AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
     - run: npm run test:unit
