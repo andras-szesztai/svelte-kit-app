@@ -24,7 +24,6 @@ jobs:
           SECRET_GITHUB_ID: ${{ secrets.SECRET_GITHUB_ID }}
           SECRET_GITHUB_SECRET: ${{ secrets.SECRET_GITHUB_SECRET }}
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
-          AUTH_TRUST_HOST: https://gray-moss-0f21dd610.2.azurestaticapps.net/
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_MOSS_0F21DD610 }}
