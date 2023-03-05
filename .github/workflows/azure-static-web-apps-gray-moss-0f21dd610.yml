@@ -21,9 +21,9 @@ jobs:
       - name: Build And Deploy
         id: builddeploy
         env:
-          SECRET_GITHUB_ID: df0492175a71f98647eb
-          SECRET_GITHUB_SECRET: 3210afdff99460ba1c400f53d9c107d726d07d64
-          AUTH_SECRET: bac5d1356f9e1c078cca9cf932994874a05f382e315a152e6746ca7df0dff6a6
+          SECRET_GITHUB_ID: ${{ secrets.SECRET_GITHUB_ID }}
+          SECRET_GITHUB_SECRET: ${{ secrets.SECRET_GITHUB_SECRET }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           AUTH_TRUST_HOST: https://gray-moss-0f21dd610.2.azurestaticapps.net/
         uses: Azure/static-web-apps-deploy@v1
         with:
