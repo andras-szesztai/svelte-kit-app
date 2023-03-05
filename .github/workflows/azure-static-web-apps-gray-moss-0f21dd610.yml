@@ -25,7 +25,7 @@ jobs:
           SECRET_GITHUB_SECRET: 3210afdff99460ba1c400f53d9c107d726d07d64
           AUTH_SECRET: bac5d1356f9e1c078cca9cf932994874a05f382e315a152e6746ca7df0dff6a6
           AUTH_TRUST_HOST: https://gray-moss-0f21dd610.2.azurestaticapps.net/
-          NEXTAUTH_URL_INTERNAL: http://10.240.8.16
+          # NEXTAUTH_URL_INTERNAL: http://10.240.8.16
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_MOSS_0F21DD610 }}
