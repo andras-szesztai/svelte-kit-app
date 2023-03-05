@@ -2,21 +2,22 @@ name: Node.js CI
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened]
     branches:
       - main
 
 jobs:
-  build_and_test_job:
+  lint_and_unit_test_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Lint and Test Job
+    name: Lint and Unit Test Job
     strategy:
       matrix:
         node-version: [18.x]
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      id: linttest
+      id: lintunittest
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
