@@ -1,9 +1,14 @@
 import { SvelteKitAuth } from '@auth/sveltekit';
-import GitHub from '@auth/core/providers/github';
+import AzureADProvider from '@auth/core/providers/azure-ad';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-import { SECRET_GITHUB_SECRET, SECRET_GITHUB_ID, AUTH_SECRET } from '$env/static/private';
+import {
+	AUTH_SECRET,
+	AZURE_AD_CLIENT_ID,
+	AZURE_AD_CLIENT_SECRET,
+	AZURE_AD_TENANT_ID
+} from '$env/static/private';
 
 const authorization = (async ({ event, resolve }) => {
 	const session = await event.locals.getSession();
@@ -21,10 +26,16 @@ const authorization = (async ({ event, resolve }) => {
 
 export const handle: Handle = sequence(
 	SvelteKitAuth({
-		trustHost: true,
-		// @ts-ignore
-		providers: [GitHub({ clientId: SECRET_GITHUB_ID, clientSecret: SECRET_GITHUB_SECRET })],
-		secret: AUTH_SECRET
+		providers: [
+			// @ts-ignore
+			AzureADProvider({
+				clientId: AZURE_AD_CLIENT_ID,
+				clientSecret: AZURE_AD_CLIENT_SECRET,
+				tenantId: AZURE_AD_TENANT_ID
+			})
+		],
+		secret: AUTH_SECRET,
+		trustHost: true
 	}),
 	authorization
 );

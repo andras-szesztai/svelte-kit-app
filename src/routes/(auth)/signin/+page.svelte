@@ -2,5 +2,7 @@
 	import { signIn } from '@auth/sveltekit/client';
 </script>
 
-<span class="notSignedInText">You are not signed in</span>
-<button on:click={() => signIn('github')}>Sign In with GitHub</button>
+<div class="flex flex-col gap-4">
+	<span class="inline">You are not signed in</span>
+	<button class="inline" on:click={() => signIn('azure-ad')}>Sign In</button>
+</div>
